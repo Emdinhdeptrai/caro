@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cờ caro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <div class="app-container">
+      <h2 class="title">Cờ Caro</h2>
+    </div>
+
+    <div class="board">
+      <div class="status" id="status"></div>
+      <div class="list-button">
+        <button class="button" id="restart-btn" title="Restart Game">
+          <i class="bi bi-arrow-counterclockwise"></i>
+        </button>
+        <button class="button" id="undo-btn" title="Undo Last Move">
+          <i class="bi bi-arrow-left-circle"></i>
+        </button>
+        <button class="button" id="single-player-toggle" title="Toggle Single Player">&#x1F477</button>
+        <button class="button" id="dimension-button">10x10</button>
+      </div>
+    </div>
+    
+    <div id="board" class="game"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
