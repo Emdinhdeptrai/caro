@@ -1,68 +1,191 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  font-family: 'Orbitron', 'Courier New', monospace;
+  color: #00ff41;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #00ff41, transparent),
+    radial-gradient(2px 2px at 40px 70px, #0099ff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ff0080, transparent),
+    radial-gradient(1px 1px at 130px 80px, #00ff41, transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: particles 20s linear infinite;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+@keyframes particles {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-200px, -200px); }
+}
 
 .app {
   text-align: center;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px; 
+  font-family: 'Orbitron', 'Courier New', monospace;
+  font-size: 20px;
   font-weight: 600;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.list-button { 
+.app-container {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 900;
+  text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41, 0 0 50px #00ff41;
+  letter-spacing: 4px;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #00ff41, #0099ff, #ff0080);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes titleGlow {
+  from { 
+    text-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41, 0 0 40px #00ff41;
+    transform: scale(1);
+  }
+  to { 
+    text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41, 0 0 60px #00ff41;
+    transform: scale(1.02);
+  }
+}
+
+.list-button {
   display: flex;
   justify-content: center;
-  gap: 6px;
+  gap: 12px;
+  margin-bottom: 1rem;
 }
 
-.button { 
-  height: 30px;
-  min-width: 30px;
-  padding: 4px 8px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f0f0f0;
+.button {
+  height: 45px;
+  min-width: 45px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid #00ff41;
+  background: linear-gradient(145deg, #0f0f23, #1a1a2e);
+  color: #00ff41;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.button:hover:not(:disabled)::before {
+  left: 100%;
 }
 
 .button:hover:not(:disabled) {
-  background-color: rgb(211, 211, 211);
-  transform: translateY(-1px);
+  background: linear-gradient(145deg, #1a1a2e, #0f0f23);
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
+  transform: translateY(-3px) scale(1.05);
+  border-color: #0099ff;
 }
 
 .button:disabled {
-  background-color: #ccc;
+  background: linear-gradient(145deg, #333, #222);
+  border-color: #666;
+  color: #666;
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .button:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(-1px) scale(1.02);
 }
 
 .button i {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #undo-btn {
-  color: #007bff;
+  color: #0099ff;
+  border-color: #0099ff;
+}
+
+#undo-btn:hover:not(:disabled) {
+  box-shadow: 0 0 25px rgba(0, 153, 255, 0.6);
 }
 
 #undo-btn:disabled {
-  color: #999;
+  color: #666;
+  border-color: #666;
+}
+
+#single-player-toggle {
+  color: #ff0080;
+  border-color: #ff0080;
+}
+
+#single-player-toggle:hover:not(:disabled) {
+  box-shadow: 0 0 25px rgba(255, 0, 128, 0.6);
 }
 
 .board {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin-top: 20px;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  border: 2px solid #00ff41;
+  box-shadow: 
+    0 0 50px rgba(0, 255, 65, 0.3),
+    inset 0 0 50px rgba(0, 255, 65, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .game {
@@ -84,9 +207,22 @@
 }
 
 .status {
-  font-weight: 500;
-  font-size: 18px;
-  color: #333;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 24px;
+  color: #00ff41;
+  text-shadow: 0 0 15px #00ff41;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border: 1px solid #00ff41;
+  letter-spacing: 2px;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }
 
 .squares button {
@@ -94,8 +230,8 @@
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: linear-gradient(145deg, #1a1a2e, #0f0f23);
+  border: 1px solid #333;
   float: left;
   font-size: 18px;
   font-weight: bold;
@@ -107,7 +243,25 @@
   text-align: center;
   width: 28px;
   cursor: pointer;
-  transition: background-color 0.1s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Orbitron', monospace;
+}
+
+.square::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.square:hover:not(:disabled)::before {
+  left: 100%;
 }
 
 .square:focus {
@@ -115,10 +269,117 @@
 }
 
 .square:hover:not(:disabled) {
-  background-color: #f0f0f0;
+  background: linear-gradient(145deg, #2a2a3e, #1f1f33);
+  border-color: #00ff41;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+  transform: scale(1.1);
+}
+
+.square[style*="color: blue"] {
+  color: #0099ff !important;
+  text-shadow: 0 0 15px #0099ff, 0 0 25px #0099ff !important;
+}
+
+.square[style*="color: red"] {
+  color: #ff0080 !important;
+  text-shadow: 0 0 15px #ff0080, 0 0 25px #ff0080 !important;
+}
+
+@keyframes neonBlue {
+  0% { 
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+  }
+  100% { 
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes neonPink {
+  0% { 
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) rotate(-180deg);
+  }
+  100% { 
+    transform: scale(1) rotate(-360deg);
+    opacity: 1;
+  }
+}
+
+.square[style*="background-color: yellow"] {
+  background: linear-gradient(45deg, #ffff00, #ffcc00) !important;
+  border-color: #ffff00 !important;
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.8) !important;
+  animation: winningGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes winningGlow {
+  0% { 
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(255, 255, 0, 1);
+    transform: scale(1.1);
+  }
 }
 
 .restart-btn {
-  width: 28px;
-  height: 28px;
+  width: 45px;
+  height: 45px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .app {
+    padding: 1rem;
+  }
+  
+  .board {
+    padding: 1rem;
+  }
+  
+  .button {
+    height: 40px;
+    min-width: 40px;
+    padding: 6px 12px;
+  }
+  
+  .status {
+    font-size: 18px;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .list-button {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .button {
+    height: 35px;
+    min-width: 35px;
+    font-size: 12px;
+  }
+  
+  .status {
+    font-size: 16px;
+    padding: 0.6rem 1rem;
+  }
 }
